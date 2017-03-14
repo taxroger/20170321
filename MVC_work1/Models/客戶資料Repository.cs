@@ -8,7 +8,7 @@ namespace MVC_work1.Models
 	{
         public 客戶資料 Find(int id)
         {
-            return this.All(null).FirstOrDefault(p => p.Id == id);
+            return this.All(null, null).FirstOrDefault(p => p.Id == id);
         }
 
         public override void Delete(客戶資料 entity)
@@ -21,13 +21,22 @@ namespace MVC_work1.Models
             return base.All().Where(p => p.isDeleted == false);
         }
 
-        public IQueryable<客戶資料> All(string sCName)
+        public IQueryable<客戶資料> All(string sCName, string sSortBy)
         {
             var data = this.All().AsQueryable();
             
             if (!string.IsNullOrEmpty(sCName))
             {
                 data = data.Where(p => p.客戶名稱.Contains(sCName));
+            }
+
+            if (sSortBy == "Asc" || string.IsNullOrEmpty(sSortBy))
+            {
+                data = data.OrderBy(p => p.客戶名稱);
+            }
+            else if (sSortBy == "Desc")
+            {
+                data = data.OrderByDescending(p => p.客戶名稱);
             }
 
             return data.AsQueryable();

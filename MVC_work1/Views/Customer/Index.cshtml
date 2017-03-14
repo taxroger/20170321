@@ -11,7 +11,7 @@
 </p>
 
 <form>
-    @Html.TextBox("sCustName")
+    客戶名稱 @Html.TextBox("sCustName")
     <input type="submit" value="搜尋" />
 </form>
 
@@ -19,12 +19,14 @@
 @using PagedList.Mvc
 
 @Html.PagedListPager(Model as IPagedList,
-    (p) => Url.Action("Index", new { sCustName = ViewBag.sCustName, pageNo = p}))
+    (p) => Url.Action("Index", new { sCustName = ViewBag.sCustName, pageNo = p, sSortby = ViewBag.sSortby}))
 
 <table class="table">
     <tr>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc", sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.客戶名稱)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc", sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.統一編號)

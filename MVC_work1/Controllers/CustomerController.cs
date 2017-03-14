@@ -18,16 +18,13 @@ namespace MVC_work1.Controllers
         客戶資料Repository customerRepo = RepositoryHelper.Get客戶資料Repository();
 
         // GET: Customer
-        public ActionResult Index(string sCustName, int pageNo = 1)
+        public ActionResult Index(string sCustName, string sSortby, int pageNo = 1)
         {
-            var data = customerRepo.All(sCustName).AsQueryable();
-
-            data = data.OrderBy(p => p.客戶名稱);
-
+            var data = customerRepo.All(sCustName, sSortby).AsQueryable();
 
             ViewBag.sCustName = sCustName;
             ViewBag.pageNo = pageNo;
-
+            ViewBag.sSortby = sSortby;
 
             return View(data.ToPagedList(pageNo, 5));
         }
