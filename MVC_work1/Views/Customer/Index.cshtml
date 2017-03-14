@@ -9,6 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+<form>
+    @Html.TextBox("sCustName")
+    <input type="submit" value="搜尋" />
+</form>
+
+@using PagedList
+@using PagedList.Mvc
+
+@Html.PagedListPager(Model as IPagedList,
+    (p) => Url.Action("Index", new { sCustName = ViewBag.sCustName, pageNo = p}))
+
 <table class="table">
     <tr>
         <th>
