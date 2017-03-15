@@ -3,7 +3,8 @@ namespace MVC_work1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+    using Validations;
+
     [MetadataType(typeof(客戶資料MetaData))]
     public partial class 客戶資料
     {
@@ -25,6 +26,7 @@ namespace MVC_work1.Models
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
         [Required]
+        [TelephoneAttribute(ErrorMessage = "手機格式錯誤(xxxx-xxxxxx)")]
         public string 電話 { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
@@ -34,6 +36,7 @@ namespace MVC_work1.Models
         public string 地址 { get; set; }
         
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public bool isDeleted { get; set; }

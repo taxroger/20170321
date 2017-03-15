@@ -10,10 +10,16 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<form>
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get, new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo }))
+{
+    @Html.Label("客戶名稱")  @Html.TextBox("sCustName")
+    <input type="submit" value="搜尋" />
+}
+
+@*<form action="@Url.Action("Index", "Customer", new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo })">
     客戶名稱 @Html.TextBox("sCustName")
     <input type="submit" value="搜尋" />
-</form>
+</form>*@
 
 @using PagedList
 @using PagedList.Mvc
