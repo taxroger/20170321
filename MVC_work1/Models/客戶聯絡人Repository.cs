@@ -41,6 +41,8 @@ namespace MVC_work1.Models
         {
             entity.isDeleted = true;    
         }
+
+
     }
 
     public  interface I客戶聯絡人Repository : IRepository<客戶聯絡人>

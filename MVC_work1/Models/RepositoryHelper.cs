@@ -7,6 +7,20 @@ namespace MVC_work1.Models
 			return new EFUnitOfWork();
 		}		
 		
+		public static Customer_Info_ViewRepository GetCustomer_Info_ViewRepository()
+		{
+			var repository = new Customer_Info_ViewRepository();
+			repository.UnitOfWork = GetUnitOfWork();
+			return repository;
+		}
+
+		public static Customer_Info_ViewRepository GetCustomer_Info_ViewRepository(IUnitOfWork unitOfWork)
+		{
+			var repository = new Customer_Info_ViewRepository();
+			repository.UnitOfWork = unitOfWork;
+			return repository;
+		}		
+
 		public static 客戶資料Repository Get客戶資料Repository()
 		{
 			var repository = new 客戶資料Repository();

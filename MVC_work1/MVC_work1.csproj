@@ -198,6 +198,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer_Info_View.cs">
+      <DependentUpon>CustomerData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Info_View.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Info_ViewRepository.cs">
+      <DependentUpon>IRepository.EF6..tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,6 +229,7 @@
     <Compile Include="Models\RepositoryHelper.cs">
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validations\DuplicateEmail.cs" />
     <Compile Include="Models\Validations\TelephoneAttribute.cs" />
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerData.tt</DependentUpon>

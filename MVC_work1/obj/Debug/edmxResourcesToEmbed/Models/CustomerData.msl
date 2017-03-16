@@ -43,5 +43,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Customer_Info_View">
+      <EntityTypeMapping TypeName="CustomerDataModel.Customer_Info_View">
+        <MappingFragment StoreEntitySet="Customer_Info_View">
+          <ScalarProperty Name="bank_count" ColumnName="bank_count" />
+          <ScalarProperty Name="contact_count" ColumnName="contact_count" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

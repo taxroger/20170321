@@ -62,6 +62,7 @@ namespace MVC_work1.Controllers
             {
                 //db.客戶資料.Add(客戶資料);
                 //db.SaveChanges();
+
                 customerRepo.Add(客戶資料);
                 customerRepo.UnitOfWork.Commit();
 

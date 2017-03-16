@@ -79,5 +79,16 @@
       <End Role="客戶資料" EntitySet="客戶資料" />
       <End Role="客戶聯絡人" EntitySet="客戶聯絡人" />
     </AssociationSet>
+    <EntitySet Name="Customer_Info_View" EntityType="CustomerDataModel.Customer_Info_View" />
   </EntityContainer>
+  <EntityType Name="Customer_Info_View">
+    <Key>
+      <PropertyRef Name="客戶名稱" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="客戶名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contact_count" Type="Int32" />
+    <Property Name="bank_count" Type="Int32" />
+  </EntityType>
 </Schema>

@@ -64,6 +64,15 @@ namespace MVC_work1.Controllers
                 //db.客戶聯絡人.Add(客戶聯絡人);
                 //db.SaveChanges();
 
+                //客戶聯絡人 custContact = new 客戶聯絡人();
+                //if (!custContact.checkEmailAddress(客戶聯絡人.客戶Id, 客戶聯絡人.Email))
+                //{
+                //    ModelState.AddModelError("Email", "email address重複!");
+
+                //    ViewBag.客戶Id = new SelectList(custRepo.All(), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+                //    return View(客戶聯絡人);
+                //}
+
                 customerRepo.Add(客戶聯絡人);
                 customerRepo.UnitOfWork.Commit();
 
@@ -144,6 +153,7 @@ namespace MVC_work1.Controllers
             customerRepo.UnitOfWork.Commit();
 
             return RedirectToAction("Index");
+
         }
 
         //protected override void Dispose(bool disposing)
