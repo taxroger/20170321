@@ -1,0 +1,42 @@
+﻿@model MVC_work1.Models.Customer_Info_View
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer_Info_View</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.客戶名稱)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.客戶名稱)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bank_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bank_count)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
