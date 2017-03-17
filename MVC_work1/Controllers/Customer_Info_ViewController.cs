@@ -11,6 +11,7 @@ using PagedList;
 
 namespace MVC_work1.Controllers
 {
+    [Authorize]
     public class Customer_Info_ViewController : Controller
     {
         //private CustomerDataEntities db = new CustomerDataEntities();

@@ -21,6 +21,20 @@ namespace MVC_work1.Models
 			return repository;
 		}		
 
+		public static user_infoRepository Getuser_infoRepository()
+		{
+			var repository = new user_infoRepository();
+			repository.UnitOfWork = GetUnitOfWork();
+			return repository;
+		}
+
+		public static user_infoRepository Getuser_infoRepository(IUnitOfWork unitOfWork)
+		{
+			var repository = new user_infoRepository();
+			repository.UnitOfWork = unitOfWork;
+			return repository;
+		}		
+
 		public static 客戶資料Repository Get客戶資料Repository()
 		{
 			var repository = new 客戶資料Repository();

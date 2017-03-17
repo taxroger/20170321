@@ -29,5 +29,6 @@ namespace MVC_work1.Models
         public virtual DbSet<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual DbSet<客戶聯絡人> 客戶聯絡人 { get; set; }
         public virtual DbSet<Customer_Info_View> Customer_Info_View { get; set; }
+        public virtual DbSet<user_info> user_info { get; set; }
     }
 }

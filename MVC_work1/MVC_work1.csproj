@@ -180,7 +180,7 @@
     <Compile Include="Controllers\CustomerContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_Info_ViewController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginVMController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +208,7 @@
     <Compile Include="Models\Customer_Info_ViewRepository.cs">
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DidplayNameAttribute.cs" />
     <Compile Include="Models\EFGeneratePartialClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +229,15 @@
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositoryHelper.cs">
+      <DependentUpon>IRepository.EF6..tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_info.cs">
+      <DependentUpon>CustomerData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_info.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_infoRepository.cs">
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Validations\DuplicateEmail.cs" />
@@ -322,9 +332,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
@@ -342,6 +349,7 @@
     <Content Include="Views\Bank\Index.cshtml" />
     <Content Include="Views\Customer_Info_View\Details.cshtml" />
     <Content Include="Views\Customer_Info_View\Index.cshtml" />
+    <Content Include="Views\LoginVM\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -80,6 +80,7 @@
       <End Role="客戶聯絡人" EntitySet="客戶聯絡人" />
     </AssociationSet>
     <EntitySet Name="Customer_Info_View" EntityType="CustomerDataModel.Customer_Info_View" />
+    <EntitySet Name="user_info" EntityType="CustomerDataModel.user_info" />
   </EntityContainer>
   <EntityType Name="Customer_Info_View">
     <Key>
@@ -90,5 +91,13 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="contact_count" Type="Int32" />
     <Property Name="bank_count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="user_info">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
   </EntityType>
 </Schema>

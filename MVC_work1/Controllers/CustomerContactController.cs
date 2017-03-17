@@ -11,6 +11,7 @@ using PagedList;
 
 namespace MVC_work1.Controllers
 {
+    [Authorize]
     public class CustomerContactController : Controller
     {
         客戶聯絡人Repository customerRepo = RepositoryHelper.Get客戶聯絡人Repository();
