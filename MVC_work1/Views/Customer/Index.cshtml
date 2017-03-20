@@ -10,9 +10,8 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get, new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo }))
 {
-    @Html.Hidden("sSortby", (object)ViewBag.sSortby)
     @Html.Label("客戶名稱")  @Html.TextBox("sCustName")
     <input type="submit" value="搜尋" />
 }
