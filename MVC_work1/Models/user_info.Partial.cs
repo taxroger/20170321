@@ -17,7 +17,7 @@ namespace MVC_work1.Models
                 yield break;
             }
 
-            yield return new ValidationResult("登入失敗", new string[] { this.username });
+            yield return new ValidationResult("登入失敗", new string[] { username });
         }
 
         private bool loginCheck()

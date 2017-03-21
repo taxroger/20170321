@@ -12,6 +12,7 @@
 
 @using (Html.BeginForm("Index", "CustomerContact", FormMethod.Get, new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo }))
 {
+    @Html.Hidden("sSortby", (object)ViewBag.sSortby)
     @Html.Label("客戶姓名")  @Html.TextBox("sName")
     <input type="submit" value="搜尋" />
 }
@@ -30,9 +31,9 @@
             @Html.DisplayNameFor(model => model.職稱)
         </th>
         <th>
-            <a href="@Url.Action("Index", "CustomerContact", new { sSortby = "Asc", sName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "CustomerContact", new { sSortby = "Asc", sName = ViewBag.sName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.姓名)
-            <a href="@Url.Action("Index", "CustomerContact", new { sSortby = "Desc", sName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "CustomerContact", new { sSortby = "Desc", sName = ViewBag.sName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)

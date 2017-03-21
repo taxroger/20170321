@@ -11,8 +11,7 @@ using PagedList;
 
 namespace MVC_work1.Controllers
 {
-    [Authorize]
-    public class BankController : Controller
+    public class BankController : BaseController
     {
         //private CustomerDataEntities db = new CustomerDataEntities();
 
