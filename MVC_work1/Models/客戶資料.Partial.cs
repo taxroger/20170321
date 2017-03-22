@@ -2,6 +2,7 @@ namespace MVC_work1.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using Validations;
 
@@ -40,6 +41,8 @@ namespace MVC_work1.Models
         public string Email { get; set; }
         [Required]
         public bool isDeleted { get; set; }
+        [DisplayName("客戶分類")]
+        public string category { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }

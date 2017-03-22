@@ -22,7 +22,7 @@ namespace MVC_work1.Models
 
             if (!string.IsNullOrEmpty(sName))
             {
-                data = data.Where(p => p.姓名.Contains(sName));
+                data = data.Where(p => p.職稱.Contains(sName));
             }
 
             if (sSortBy == "Asc" || string.IsNullOrEmpty(sSortBy))

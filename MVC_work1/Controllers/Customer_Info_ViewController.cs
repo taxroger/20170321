@@ -11,12 +11,11 @@ using PagedList;
 
 namespace MVC_work1.Controllers
 {
-    [Authorize]
-    public class Customer_Info_ViewController : Controller
+    public class Customer_Info_ViewController : BaseController
     {
         //private CustomerDataEntities db = new CustomerDataEntities();
 
-        Customer_Info_ViewRepository civRepo = RepositoryHelper.GetCustomer_Info_ViewRepository();
+        customer_info_viewRepository civRepo = RepositoryHelper.Getcustomer_info_viewRepository();
 
         // GET: Customer_Info_View
         public ActionResult Index(int pageNo = 1)
@@ -35,7 +34,7 @@ namespace MVC_work1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer_Info_View customer_Info_View = civRepo.Find(id.Value);
+            customer_info_view customer_Info_View = civRepo.Find(id.Value);
             if (customer_Info_View == null)
             {
                 return HttpNotFound();

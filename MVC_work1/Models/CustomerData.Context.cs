@@ -28,7 +28,8 @@ namespace MVC_work1.Models
         public virtual DbSet<客戶資料> 客戶資料 { get; set; }
         public virtual DbSet<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual DbSet<客戶聯絡人> 客戶聯絡人 { get; set; }
-        public virtual DbSet<Customer_Info_View> Customer_Info_View { get; set; }
         public virtual DbSet<user_info> user_info { get; set; }
+        public virtual DbSet<customer_info_view> customer_info_view { get; set; }
+        public virtual DbSet<category_data> category_data { get; set; }
     }
 }

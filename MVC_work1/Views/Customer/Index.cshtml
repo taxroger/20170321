@@ -14,7 +14,10 @@
 {
     @Html.Hidden("sSortby", (object)ViewBag.sSortby)
     @Html.Label("客戶名稱")  @Html.TextBox("sCustName")
-    <input type="submit" value="搜尋" />
+    @*@Html.Label("分類") @Html.DropDownList("category")*@
+    @Html.Label("分類") @Html.DropDownList("sCategory", (IEnumerable<SelectListItem>)ViewBag.categories)
+    @*@Html.Label("分類") @Html.DropDownList(ViewBag.categories)*@
+   <input type="submit" value="搜尋" />
 }
 
 @*<form action="@Url.Action("Index", "Customer", new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo })">
@@ -50,6 +53,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
         <th></th>
     </tr>
 
@@ -72,6 +78,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

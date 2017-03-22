@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.86.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.86.0\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -172,17 +180,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\logExecutionTimeAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BankController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\Customer_Info_ViewController.cs" />
     <Compile Include="Controllers\LoginVMController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category_data.cs">
+      <DependentUpon>CustomerData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category_data.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\category_dataRepository.cs">
+      <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerData.Context.cs">
       <AutoGen>True</AutoGen>
@@ -199,13 +218,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerData.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer_Info_View.cs">
+    <Compile Include="Models\customer_info_view.cs">
       <DependentUpon>CustomerData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer_Info_View.Partial.cs">
+    <Compile Include="Models\customer_info_view.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer_Info_ViewRepository.cs">
+    <Compile Include="Models\customer_info_viewRepository.cs">
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DidplayNameAttribute.cs" />
@@ -354,6 +373,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModel\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

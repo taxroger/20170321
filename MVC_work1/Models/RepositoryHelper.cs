@@ -7,16 +7,30 @@ namespace MVC_work1.Models
 			return new EFUnitOfWork();
 		}		
 		
-		public static Customer_Info_ViewRepository GetCustomer_Info_ViewRepository()
+		public static category_dataRepository Getcategory_dataRepository()
 		{
-			var repository = new Customer_Info_ViewRepository();
+			var repository = new category_dataRepository();
 			repository.UnitOfWork = GetUnitOfWork();
 			return repository;
 		}
 
-		public static Customer_Info_ViewRepository GetCustomer_Info_ViewRepository(IUnitOfWork unitOfWork)
+		public static category_dataRepository Getcategory_dataRepository(IUnitOfWork unitOfWork)
 		{
-			var repository = new Customer_Info_ViewRepository();
+			var repository = new category_dataRepository();
+			repository.UnitOfWork = unitOfWork;
+			return repository;
+		}		
+
+		public static customer_info_viewRepository Getcustomer_info_viewRepository()
+		{
+			var repository = new customer_info_viewRepository();
+			repository.UnitOfWork = GetUnitOfWork();
+			return repository;
+		}
+
+		public static customer_info_viewRepository Getcustomer_info_viewRepository(IUnitOfWork unitOfWork)
+		{
+			var repository = new customer_info_viewRepository();
 			repository.UnitOfWork = unitOfWork;
 			return repository;
 		}		

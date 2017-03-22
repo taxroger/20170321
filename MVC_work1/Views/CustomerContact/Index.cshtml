@@ -13,7 +13,7 @@
 @using (Html.BeginForm("Index", "CustomerContact", FormMethod.Get, new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo }))
 {
     @Html.Hidden("sSortby", (object)ViewBag.sSortby)
-    @Html.Label("客戶姓名")  @Html.TextBox("sName")
+    @Html.Label("職稱:")  @Html.TextBox("sName")
     <input type="submit" value="搜尋" />
 }
 

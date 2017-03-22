@@ -4,6 +4,7 @@
     <EntitySetMapping Name="客戶資料">
       <EntityTypeMapping TypeName="CustomerDataModel.客戶資料">
         <MappingFragment StoreEntitySet="客戶資料">
+          <ScalarProperty Name="category" ColumnName="category" />
           <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
@@ -43,22 +44,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Customer_Info_View">
-      <EntityTypeMapping TypeName="CustomerDataModel.Customer_Info_View">
-        <MappingFragment StoreEntitySet="Customer_Info_View">
-          <ScalarProperty Name="bank_count" ColumnName="bank_count" />
-          <ScalarProperty Name="contact_count" ColumnName="contact_count" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="user_info">
       <EntityTypeMapping TypeName="CustomerDataModel.user_info">
         <MappingFragment StoreEntitySet="user_info">
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_info_view">
+      <EntityTypeMapping TypeName="CustomerDataModel.customer_info_view">
+        <MappingFragment StoreEntitySet="customer_info_view">
+          <ScalarProperty Name="bank_count" ColumnName="bank_count" />
+          <ScalarProperty Name="contact_count" ColumnName="contact_count" />
+          <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="category_data">
+      <EntityTypeMapping TypeName="CustomerDataModel.category_data">
+        <MappingFragment StoreEntitySet="category_data">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="cateogry" ColumnName="cateogry" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

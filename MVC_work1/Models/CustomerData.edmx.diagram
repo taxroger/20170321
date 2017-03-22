@@ -10,8 +10,10 @@
         <EntityTypeShape EntityType="CustomerDataModel.客戶聯絡人" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="CustomerDataModel.FK_客戶銀行資訊_客戶資料" ManuallyRouted="false" />
         <AssociationConnector Association="CustomerDataModel.FK_客戶聯絡人_客戶資料" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CustomerDataModel.Customer_Info_View" Width="2.375" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="CustomerDataModel.user_info" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="CustomerDataModel.customer_info_view" Width="2.75" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CustomerDataModel.category_data" Width="1.5" PointX="0.75" PointY="0.5" />
+        <AssociationConnector Association="CustomerDataModel.FK_客戶資料_category_data" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

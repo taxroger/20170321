@@ -11,21 +11,23 @@ using PagedList;
 
 namespace MVC_work1.Controllers
 {
-    [Authorize]
-    public class CustomerController : Controller
+    public class CustomerController : BaseController
     {
         //private CustomerDataEntities db = new CustomerDataEntities();
 
         客戶資料Repository customerRepo = RepositoryHelper.Get客戶資料Repository();
+        category_dataRepository cgRepo = RepositoryHelper.Getcategory_dataRepository();
 
         // GET: Customer
-        public ActionResult Index(string sCustName, string sSortby, int pageNo = 1)
+        public ActionResult Index(string sCustName, string sSortby, string sCategory, int pageNo = 1)
         {
-            var data = customerRepo.All(sCustName, sSortby).AsQueryable();
+            var data = customerRepo.All(sCustName, sSortby, sCategory).AsQueryable();
 
             ViewBag.sCustName = sCustName;
             ViewBag.pageNo = pageNo;
             ViewBag.sSortby = sSortby;
+            ViewBag.categories = cgRepo.getCategories(null);
+            //this.ViewData["category"] = cgRepo.getCategory_SelectList();
 
             return View(data.ToPagedList(pageNo, 5));
         }
@@ -49,6 +51,8 @@ namespace MVC_work1.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
+            ViewBag.categories = cgRepo.getCategories(null);
+
             return View();
         }
 
@@ -57,7 +61,7 @@ namespace MVC_work1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted")] 客戶資料 客戶資料)
+        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +73,9 @@ namespace MVC_work1.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            //ViewBag.categories = cgRepo.getCategories();
+            ViewBag.category = cgRepo.getCategory_SelectList();
 
             return View(客戶資料);
         }
@@ -86,6 +93,14 @@ namespace MVC_work1.Controllers
             {
                 return HttpNotFound();
             }
+
+            //category_dataRepository cdRepo = RepositoryHelper.Getcategory_dataRepository();
+
+            //ViewBag.CategoryList = new SelectList(cdRepo.All(), "category", "description", 客戶資料.category);
+
+            //ViewBag.CategoryList = new SelectList(cdRepo.All(), "category", "category");
+            ViewBag.categories = cgRepo.getCategories(客戶資料.category);
+
             return View(客戶資料);
         }
 
@@ -94,7 +109,7 @@ namespace MVC_work1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted")] 客戶資料 客戶資料)
+        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +120,9 @@ namespace MVC_work1.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.categories = cgRepo.getCategories(客戶資料.category);
+
             return View(客戶資料);
         }
 
@@ -139,6 +157,8 @@ namespace MVC_work1.Controllers
 
             return RedirectToAction("Index");
         }
+
+
 
         //protected override void Dispose(bool disposing)
         //{

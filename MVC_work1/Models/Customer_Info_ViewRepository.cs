@@ -4,20 +4,20 @@ using System.Collections.Generic;
 	
 namespace MVC_work1.Models
 {   
-	public  class Customer_Info_ViewRepository : EFRepository<Customer_Info_View>, ICustomer_Info_ViewRepository
+	public  class customer_info_viewRepository : EFRepository<customer_info_view>, Icustomer_info_viewRepository
 	{
-        public override IQueryable<Customer_Info_View> All()
+        public override IQueryable<customer_info_view> All()
         {
-            return base.All();  
+            return base.All();
         }
 
-        public Customer_Info_View Find(int id)
+        public customer_info_view Find(int id)
         {
             return this.All().FirstOrDefault(p => p.Id == id);
         }
     }
 
-	public  interface ICustomer_Info_ViewRepository : IRepository<Customer_Info_View>
+	public  interface Icustomer_info_viewRepository : IRepository<customer_info_view>
 	{
 
 	}

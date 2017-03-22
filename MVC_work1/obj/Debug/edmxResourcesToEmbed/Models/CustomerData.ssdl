@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CustomerDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="category_data">
+    <Key>
+      <PropertyRef Name="cateogry" />
+    </Key>
+    <Property Name="cateogry" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="user_info">
     <Key>
       <PropertyRef Name="username" />
     </Key>
-    <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="description" Type="nchar" MaxLength="30" />
+    <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="description" Type="nchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="客戶資料">
     <Key>
@@ -20,6 +27,7 @@
     <Property Name="地址" Type="nvarchar" MaxLength="100" />
     <Property Name="Email" Type="nvarchar" MaxLength="250" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="客戶銀行資訊">
     <Key>
@@ -48,17 +56,29 @@
     <Property Name="isDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'C:\MYWK\VSWK\TEST\C#\MVC_WORK1\MVC_WORK1\APP_DATA\客戶資料.MDF.dbo.Customer_Info_View' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-  <EntityType Name="Customer_Info_View">
+警告 6002: 資料表/檢視 'C:\MYWK\VSWK\TEST\C#\MVC_WORK1_BACKUP\20170321-GITHUB\MVC_WORK1\APP_DATA\客戶資料.MDF.dbo.customer_info_view' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="customer_info_view">
     <Key>
-      <PropertyRef Name="客戶名稱" />
       <PropertyRef Name="Id" />
+      <PropertyRef Name="客戶名稱" />
     </Key>
-    <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="contact_count" Type="int" />
     <Property Name="bank_count" Type="int" />
   </EntityType>
+  <Association Name="FK_客戶資料_category_data">
+    <End Role="category_data" Type="Self.category_data" Multiplicity="0..1" />
+    <End Role="客戶資料" Type="Self.客戶資料" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category_data">
+        <PropertyRef Name="cateogry" />
+      </Principal>
+      <Dependent Role="客戶資料">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_客戶銀行資訊_客戶資料">
     <End Role="客戶資料" Type="Self.客戶資料" Multiplicity="1" />
     <End Role="客戶銀行資訊" Type="Self.客戶銀行資訊" Multiplicity="*" />
@@ -84,18 +104,23 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CustomerDataModelStoreContainer">
+    <EntitySet Name="category_data" EntityType="Self.category_data" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_info" EntityType="Self.user_info" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="客戶資料" EntityType="Self.客戶資料" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="客戶銀行資訊" EntityType="Self.客戶銀行資訊" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="客戶聯絡人" EntityType="Self.客戶聯絡人" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Customer_Info_View" EntityType="Self.Customer_Info_View" store:Type="Views" store:Schema="dbo">
+    <EntitySet Name="customer_info_view" EntityType="Self.customer_info_view" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [Customer_Info_View].[客戶名稱] AS [客戶名稱], 
-    [Customer_Info_View].[Id] AS [Id], 
-    [Customer_Info_View].[contact_count] AS [contact_count], 
-    [Customer_Info_View].[bank_count] AS [bank_count]
-    FROM [dbo].[Customer_Info_View] AS [Customer_Info_View]</DefiningQuery>
+    [customer_info_view].[Id] AS [Id], 
+    [customer_info_view].[客戶名稱] AS [客戶名稱], 
+    [customer_info_view].[contact_count] AS [contact_count], 
+    [customer_info_view].[bank_count] AS [bank_count]
+    FROM [dbo].[customer_info_view] AS [customer_info_view]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_客戶資料_category_data" Association="Self.FK_客戶資料_category_data">
+      <End Role="category_data" EntitySet="category_data" />
+      <End Role="客戶資料" EntitySet="客戶資料" />
+    </AssociationSet>
     <AssociationSet Name="FK_客戶銀行資訊_客戶資料" Association="Self.FK_客戶銀行資訊_客戶資料">
       <End Role="客戶資料" EntitySet="客戶資料" />
       <End Role="客戶銀行資訊" EntitySet="客戶銀行資訊" />

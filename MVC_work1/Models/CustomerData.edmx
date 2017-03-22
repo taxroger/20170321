@@ -5,13 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CustomerDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category_data">
+          <Key>
+            <PropertyRef Name="cateogry" />
+          </Key>
+          <Property Name="cateogry" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="user_info">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="description" Type="nchar" MaxLength="30" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="客戶資料">
           <Key>
@@ -25,6 +32,7 @@
           <Property Name="地址" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="250" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="客戶銀行資訊">
           <Key>
@@ -53,17 +61,29 @@
           <Property Name="isDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'C:\MYWK\VSWK\TEST\C#\MVC_WORK1\MVC_WORK1\APP_DATA\客戶資料.MDF.dbo.Customer_Info_View' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-        <EntityType Name="Customer_Info_View">
+警告 6002: 資料表/檢視 'C:\MYWK\VSWK\TEST\C#\MVC_WORK1_BACKUP\20170321-GITHUB\MVC_WORK1\APP_DATA\客戶資料.MDF.dbo.customer_info_view' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="customer_info_view">
           <Key>
-            <PropertyRef Name="客戶名稱" />
             <PropertyRef Name="Id" />
+            <PropertyRef Name="客戶名稱" />
           </Key>
-          <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="客戶名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="contact_count" Type="int" />
           <Property Name="bank_count" Type="int" />
         </EntityType>
+        <Association Name="FK_客戶資料_category_data">
+          <End Role="category_data" Type="Self.category_data" Multiplicity="0..1" />
+          <End Role="客戶資料" Type="Self.客戶資料" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category_data">
+              <PropertyRef Name="cateogry" />
+            </Principal>
+            <Dependent Role="客戶資料">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_客戶銀行資訊_客戶資料">
           <End Role="客戶資料" Type="Self.客戶資料" Multiplicity="1" />
           <End Role="客戶銀行資訊" Type="Self.客戶銀行資訊" Multiplicity="*" />
@@ -89,18 +109,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CustomerDataModelStoreContainer">
+          <EntitySet Name="category_data" EntityType="Self.category_data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_info" EntityType="Self.user_info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="客戶資料" EntityType="Self.客戶資料" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="客戶銀行資訊" EntityType="Self.客戶銀行資訊" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="客戶聯絡人" EntityType="Self.客戶聯絡人" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customer_Info_View" EntityType="Self.Customer_Info_View" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="customer_info_view" EntityType="Self.customer_info_view" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Customer_Info_View].[客戶名稱] AS [客戶名稱], 
-    [Customer_Info_View].[Id] AS [Id], 
-    [Customer_Info_View].[contact_count] AS [contact_count], 
-    [Customer_Info_View].[bank_count] AS [bank_count]
-    FROM [dbo].[Customer_Info_View] AS [Customer_Info_View]</DefiningQuery>
+    [customer_info_view].[Id] AS [Id], 
+    [customer_info_view].[客戶名稱] AS [客戶名稱], 
+    [customer_info_view].[contact_count] AS [contact_count], 
+    [customer_info_view].[bank_count] AS [bank_count]
+    FROM [dbo].[customer_info_view] AS [customer_info_view]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_客戶資料_category_data" Association="Self.FK_客戶資料_category_data">
+            <End Role="category_data" EntitySet="category_data" />
+            <End Role="客戶資料" EntitySet="客戶資料" />
+          </AssociationSet>
           <AssociationSet Name="FK_客戶銀行資訊_客戶資料" Association="Self.FK_客戶銀行資訊_客戶資料">
             <End Role="客戶資料" EntitySet="客戶資料" />
             <End Role="客戶銀行資訊" EntitySet="客戶銀行資訊" />
@@ -128,6 +153,8 @@
           <NavigationProperty Name="客戶銀行資訊" Relationship="Self.FK_客戶銀行資訊_客戶資料" FromRole="客戶資料" ToRole="客戶銀行資訊" />
           <NavigationProperty Name="客戶聯絡人" Relationship="Self.FK_客戶聯絡人_客戶資料" FromRole="客戶資料" ToRole="客戶聯絡人" />
           <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="category_data" Relationship="CustomerDataModel.FK_客戶資料_category_data" FromRole="客戶資料" ToRole="category_data" />
         </EntityType>
         <EntityType Name="客戶銀行資訊">
           <Key>
@@ -193,27 +220,52 @@
             <End Role="客戶資料" EntitySet="客戶資料" />
             <End Role="客戶聯絡人" EntitySet="客戶聯絡人" />
           </AssociationSet>
-          <EntitySet Name="Customer_Info_View" EntityType="CustomerDataModel.Customer_Info_View" />
           <EntitySet Name="user_info" EntityType="CustomerDataModel.user_info" />
+          <EntitySet Name="customer_info_view" EntityType="CustomerDataModel.customer_info_view" />
+          <EntitySet Name="category_data" EntityType="CustomerDataModel.category_data" />
+          <AssociationSet Name="FK_客戶資料_category_data" Association="CustomerDataModel.FK_客戶資料_category_data">
+            <End Role="category_data" EntitySet="category_data" />
+            <End Role="客戶資料" EntitySet="客戶資料" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Customer_Info_View">
-          <Key>
-            <PropertyRef Name="客戶名稱" />
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="客戶名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contact_count" Type="Int32" />
-          <Property Name="bank_count" Type="Int32" />
-        </EntityType>
         <EntityType Name="user_info">
           <Key>
             <PropertyRef Name="username" />
           </Key>
-          <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="customer_info_view">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="客戶名稱" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="客戶名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_count" Type="Int32" />
+          <Property Name="bank_count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="category_data">
+          <Key>
+            <PropertyRef Name="cateogry" />
+          </Key>
+          <Property Name="cateogry" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="客戶資料" Relationship="CustomerDataModel.FK_客戶資料_category_data" FromRole="category_data" ToRole="客戶資料" />
+        </EntityType>
+        <Association Name="FK_客戶資料_category_data">
+          <End Type="CustomerDataModel.category_data" Role="category_data" Multiplicity="0..1" />
+          <End Type="CustomerDataModel.客戶資料" Role="客戶資料" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category_data">
+              <PropertyRef Name="cateogry" />
+            </Principal>
+            <Dependent Role="客戶資料">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -223,6 +275,7 @@
           <EntitySetMapping Name="客戶資料">
             <EntityTypeMapping TypeName="CustomerDataModel.客戶資料">
               <MappingFragment StoreEntitySet="客戶資料">
+                <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
@@ -262,22 +315,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customer_Info_View">
-            <EntityTypeMapping TypeName="CustomerDataModel.Customer_Info_View">
-              <MappingFragment StoreEntitySet="Customer_Info_View">
-                <ScalarProperty Name="bank_count" ColumnName="bank_count" />
-                <ScalarProperty Name="contact_count" ColumnName="contact_count" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="user_info">
             <EntityTypeMapping TypeName="CustomerDataModel.user_info">
               <MappingFragment StoreEntitySet="user_info">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_info_view">
+            <EntityTypeMapping TypeName="CustomerDataModel.customer_info_view">
+              <MappingFragment StoreEntitySet="customer_info_view">
+                <ScalarProperty Name="bank_count" ColumnName="bank_count" />
+                <ScalarProperty Name="contact_count" ColumnName="contact_count" />
+                <ScalarProperty Name="客戶名稱" ColumnName="客戶名稱" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category_data">
+            <EntityTypeMapping TypeName="CustomerDataModel.category_data">
+              <MappingFragment StoreEntitySet="category_data">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="cateogry" ColumnName="cateogry" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

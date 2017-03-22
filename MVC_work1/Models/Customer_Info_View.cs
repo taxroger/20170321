@@ -12,10 +12,10 @@ namespace MVC_work1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer_Info_View
+    public partial class customer_info_view
     {
-        public string 客戶名稱 { get; set; }
         public int Id { get; set; }
+        public string 客戶名稱 { get; set; }
         public Nullable<int> contact_count { get; set; }
         public Nullable<int> bank_count { get; set; }
     }
