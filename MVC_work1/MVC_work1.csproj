@@ -203,6 +203,7 @@
     <Compile Include="Models\category_dataRepository.cs">
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Custom Class\common.cs" />
     <Compile Include="Models\CustomerData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

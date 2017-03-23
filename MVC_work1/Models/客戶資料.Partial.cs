@@ -41,7 +41,6 @@ namespace MVC_work1.Models
         public string Email { get; set; }
         [Required]
         public bool isDeleted { get; set; }
-        [DisplayName("客戶分類")]
         public string category { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }

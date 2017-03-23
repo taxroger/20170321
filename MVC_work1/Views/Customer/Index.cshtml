@@ -34,27 +34,40 @@
 <table class="table">
     <tr>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc", sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.客戶名稱)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc", sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.統一編號)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.電話)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.傳真)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.地址)
+            @*@Html.DisplayFor(model => model)*@
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.Email)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
-        <th>
+        <th> 
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
             @Html.DisplayNameFor(model => model.category)
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </th>
         <th></th>
     </tr>
