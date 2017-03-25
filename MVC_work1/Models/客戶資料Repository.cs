@@ -16,6 +16,8 @@ namespace MVC_work1.Models
         public override void Delete(客戶資料 entity)
         {
             entity.isDeleted = true;
+
+            //base.Delete(entity);
         }
 
         public override IQueryable<客戶資料> All()

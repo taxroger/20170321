@@ -4,6 +4,11 @@
     ViewBag.Title = "Details";
 }
 
+@section breadcrumb {
+    <li><a href="@Url.Action("Details")">客戶詳細資料</a></li>
+}
+
+
 <h2>Details</h2>
 
 <div>
@@ -74,6 +79,15 @@
             @Html.DisplayFor(model => model.category)
         </dd>
 </dl>
+
+    <hr />
+
+    @using (Html.BeginForm("saveContacts", "Customer", FormMethod.Post))
+    {
+        @Html.Partial("CustomerContacts", Model.客戶聯絡人)
+
+        <input type="submit" value="save" />
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

@@ -46,7 +46,7 @@ namespace MVC_work1.Models
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         [Required]
         [EmailAddress]
-        [DuplicateEmail("客戶Id")]
+        //[DuplicateEmail("客戶Id")]
         public string Email { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]

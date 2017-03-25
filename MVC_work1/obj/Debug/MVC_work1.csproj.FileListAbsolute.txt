@@ -211,18 +211,6 @@ C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321_test\MVC_work1\bin\zh-Hant\Entity
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321_test\MVC_work1\obj\Debug\MVC_work1.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321_test\MVC_work1\obj\Debug\MVC_work1.pdb
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\ApplicationInsights.config
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\csc.exe
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\System.Collections.Immutable.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\System.Reflection.Metadata.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\vbc.exe
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\VBCSCompiler.exe
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\roslyn\VBCSCompiler.exe.config
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\MVC_work1.dll.config
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\MVC_work1.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\MVC_work1.pdb
@@ -238,7 +226,6 @@ C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI.Web.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI.WindowsServer.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.ApplicationInsights.dll
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.Web.Infrastructure.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Newtonsoft.Json.dll
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\PagedList.dll
@@ -262,7 +249,6 @@ C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI.Web.xml
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.AI.WindowsServer.xml
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.ApplicationInsights.xml
-C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\PagedList.xml
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\PagedList.Mvc.xml
 C:\MyWk\VSWk\Test\C#\MVC_work1_backup\20170321-Github\MVC_work1\bin\System.Web.Helpers.xml

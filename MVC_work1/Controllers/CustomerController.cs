@@ -8,9 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_work1.Models;
 using PagedList;
+using System.Data.Entity.Validation;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace MVC_work1.Controllers
 {
+    [HandleError(View = "error_DbEntityValidationException", ExceptionType = typeof(DbEntityValidationException))]
     public class CustomerController : BaseController
     {
         //private CustomerDataEntities db = new CustomerDataEntities();
@@ -26,7 +30,10 @@ namespace MVC_work1.Controllers
             ViewBag.sCustName = sCustName;
             ViewBag.pageNo = pageNo;
             ViewBag.sSortby = sSortby;
+            ViewBag.sCategory = sCategory;
+
             ViewBag.categories = cgRepo.getCategories(null);
+
             //this.ViewData["category"] = cgRepo.getCategory_SelectList();
 
             return View(data.ToPagedList(pageNo, 5));
@@ -109,14 +116,36 @@ namespace MVC_work1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category")] 客戶資料 客戶資料)
+        //public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category")] 客戶資料 客戶資料)
+        public ActionResult Edit(int id, FormCollection form, 客戶聯絡人[] data)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    var db = customerRepo.UnitOfWork.Context;
+            //    db.Entry(客戶資料).State = EntityState.Modified;
+            //    //db.SaveChanges();
+            //    customerRepo.UnitOfWork.Commit();
+
+            //    return RedirectToAction("Index");
+            //}
+
+            var 客戶資料 = customerRepo.Find(id);
+            if (TryUpdateModel(客戶資料, new string[] { "客戶名稱", "統一編號", "電話", "傳真", "地址", "Email", "category" }))
             {
-                var db = customerRepo.UnitOfWork.Context;
-                db.Entry(客戶資料).State = EntityState.Modified;
-                //db.SaveChanges();
                 customerRepo.UnitOfWork.Commit();
+
+                var contactRepo = RepositoryHelper.Get客戶聯絡人Repository();
+
+                foreach (var item in data)
+                {
+                    var contact = contactRepo.Find(item.Id);
+
+                    contact.職稱 = item.職稱;
+                    contact.手機 = item.手機;
+                    contact.電話 = item.電話;
+                }
+
+                contactRepo.UnitOfWork.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -158,7 +187,43 @@ namespace MVC_work1.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ExportToExcel(string sCustName, string sSortby, string sCategory)
+        {
+            var data = customerRepo.All(sCustName, sSortby, sCategory);
 
+            DataTable dt = new DataTable("Customers");
+
+            dt.Columns.AddRange(new DataColumn[8]
+            {
+                new DataColumn("Id"),
+                new DataColumn("客戶名稱"),
+                new DataColumn("統一編號"),
+                new DataColumn("電話"),
+                new DataColumn("傳真"),
+                new DataColumn("地址"),
+                new DataColumn("Email"),
+                new DataColumn("category")
+            });
+
+
+            foreach (var item in data)
+            {
+                dt.Rows.Add(item.Id, item.客戶名稱, item.統一編號, item.電話, item.傳真, item.地址, item.Email, item.category);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Customers.xlsx");
+                }
+            }
+
+        }
 
         //protected override void Dispose(bool disposing)
         //{
@@ -168,5 +233,24 @@ namespace MVC_work1.Controllers
         //    }
         //    base.Dispose(disposing);
         //}
+
+        [HttpPost]
+        public ActionResult saveContacts(客戶聯絡人[] data)
+        {
+            var contactRepo = RepositoryHelper.Get客戶聯絡人Repository();
+
+            foreach (var item in data)
+            {
+                var contact = contactRepo.Find(item.Id);
+
+                contact.職稱 = item.職稱;
+                contact.手機 = item.手機;
+                contact.電話 = item.電話;
+            }
+
+            contactRepo.UnitOfWork.Commit();
+            
+            return RedirectToAction("Index");
+        }
     }
 }

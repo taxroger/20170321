@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@section breadcrumb {
+    <li><a href="@Url.Action("Index")">客戶資料</a></li>
+}
+
+<h2>Customer</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,54 +24,52 @@
    <input type="submit" value="搜尋" />
 }
 
-@*<form action="@Url.Action("Index", "Customer", new { sSortby = ViewBag.sSortby, pageNo = ViewBag.pageNo })">
-    客戶名稱 @Html.TextBox("sCustName")
-    <input type="submit" value="搜尋" />
-</form>*@
+@Html.ActionLink("Excel files", "ExportToExcel", new { sCustName = ViewBag.sCustName, sSortby = ViewBag.sSortby, sCategory = ViewBag.sCategory })
+
 
 @using PagedList
 @using PagedList.Mvc
 
 @Html.PagedListPager(Model as IPagedList,
-    (p) => Url.Action("Index", new { sCustName = ViewBag.sCustName, pageNo = p, sSortby = ViewBag.sSortby}))
+    (p) => Url.Action("Index", new { sCustName = ViewBag.sCustName, pageNo = p, sSortby = ViewBag.sSortby, sCategory = ViewBag.sCategory}))
 
 <table class="table">
     <tr>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.客戶名稱)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.客戶名稱), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.統一編號)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.統一編號), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.電話)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.電話), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.傳真)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.傳真), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.地址)
             @*@Html.DisplayFor(model => model)*@
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.地址), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th>
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.Email)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.Email), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th> 
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Asc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-down">A</span></a>
             @Html.DisplayNameFor(model => model.category)
-            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a href="@Url.Action("Index", "Customer", new { sSortby = "Desc_" + Html.DisplayNameFor(model => model.category), sCustName = ViewBag.sCustName, pageNo = ViewBag.pageNo })"><span class="glyphicon glyphicon-chevron-up">D</span></a>
         </th>
         <th></th>
     </tr>

@@ -6,9 +6,9 @@
 
 <h2>Index</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+@section breadcrumb {
+    <li><a href="@Url.Action("Index")">客戶資訊</a></li>
+}
 
 @using PagedList
 @using PagedList.Mvc
