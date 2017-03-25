@@ -42,7 +42,9 @@ namespace MVC_work1.Models
         [Required]
         public bool isDeleted { get; set; }
         public string category { get; set; }
-    
+        public string username { get; set; }
+        public string password { get; set; }
+
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }
     }

@@ -33,6 +33,8 @@
           <Property Name="Email" Type="nvarchar" MaxLength="250" />
           <Property Name="isDeleted" Type="bit" Nullable="false" />
           <Property Name="category" Type="nvarchar" MaxLength="50" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" />
+          <Property Name="password" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="客戶銀行資訊">
           <Key>
@@ -155,6 +157,8 @@
           <Property Name="isDeleted" Type="Boolean" Nullable="false" />
           <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="category_data" Relationship="CustomerDataModel.FK_客戶資料_category_data" FromRole="客戶資料" ToRole="category_data" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="客戶銀行資訊">
           <Key>
@@ -275,6 +279,8 @@
           <EntitySetMapping Name="客戶資料">
             <EntityTypeMapping TypeName="CustomerDataModel.客戶資料">
               <MappingFragment StoreEntitySet="客戶資料">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

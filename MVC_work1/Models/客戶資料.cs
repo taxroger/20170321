@@ -30,6 +30,8 @@ namespace MVC_work1.Models
         public string Email { get; set; }
         public bool isDeleted { get; set; }
         public string category { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }

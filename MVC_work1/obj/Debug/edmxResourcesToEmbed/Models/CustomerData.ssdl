@@ -28,6 +28,8 @@
     <Property Name="Email" Type="nvarchar" MaxLength="250" />
     <Property Name="isDeleted" Type="bit" Nullable="false" />
     <Property Name="category" Type="nvarchar" MaxLength="50" />
+    <Property Name="username" Type="nvarchar" MaxLength="30" />
+    <Property Name="password" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="客戶銀行資訊">
     <Key>

@@ -11,6 +11,7 @@ using PagedList;
 using System.Data.Entity.Validation;
 using ClosedXML.Excel;
 using System.IO;
+using System.Web.Security;
 
 namespace MVC_work1.Controllers
 {
@@ -68,7 +69,7 @@ namespace MVC_work1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category")] 客戶資料 客戶資料)
+        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email,isDeleted,category,username,password")] 客戶資料 客戶資料)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +83,7 @@ namespace MVC_work1.Controllers
             }
 
             //ViewBag.categories = cgRepo.getCategories();
-            ViewBag.category = cgRepo.getCategory_SelectList();
+            //ViewBag.category = cgRepo.getCategory_SelectList();
 
             return View(客戶資料);
         }
@@ -130,22 +131,31 @@ namespace MVC_work1.Controllers
             //}
 
             var 客戶資料 = customerRepo.Find(id);
-            if (TryUpdateModel(客戶資料, new string[] { "客戶名稱", "統一編號", "電話", "傳真", "地址", "Email", "category" }))
+            if (TryUpdateModel(客戶資料, new string[] { "客戶名稱", "統一編號", "電話", "傳真", "地址", "Email", "category", "username", "password" }))
             {
-                customerRepo.UnitOfWork.Commit();
-
-                var contactRepo = RepositoryHelper.Get客戶聯絡人Repository();
-
-                foreach (var item in data)
+                if (!string.IsNullOrEmpty(客戶資料.password))
                 {
-                    var contact = contactRepo.Find(item.Id);
-
-                    contact.職稱 = item.職稱;
-                    contact.手機 = item.手機;
-                    contact.電話 = item.電話;
+                    客戶資料.password = FormsAuthentication.HashPasswordForStoringInConfigFile(客戶資料.password + "SepvTT", "sha1");
                 }
 
-                contactRepo.UnitOfWork.Commit();
+                customerRepo.UnitOfWork.Commit();
+
+                if (data != null)
+                {
+                    var contactRepo = RepositoryHelper.Get客戶聯絡人Repository();
+
+                    foreach (var item in data)
+                    {
+                        var contact = contactRepo.Find(item.Id);
+
+                        contact.職稱 = item.職稱;
+                        contact.手機 = item.手機;
+                        contact.電話 = item.電話;
+                    }
+
+                    contactRepo.UnitOfWork.Commit();
+
+                }
 
                 return RedirectToAction("Index");
             }
